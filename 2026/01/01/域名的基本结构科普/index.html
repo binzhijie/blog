@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/lxgwwenkai/dist/LXGWWenKai-Bold/result.css' />
+  <link rel='stylesheet' href='https://chinese-fonts-cdn.deno.dev/packages/jhlst/dist/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002/result.css' />  
+  
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>域名的基本结构科普 [ Zhijie&#39;s Blog ]</title>
+
+  <link rel="icon" href="/blog/img/favicon.ico">
+
+
+    <meta name="author" content="ZhijieBin">
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml " title="Zhijie&#39;s Blog" type="application/atom+xml">
+
+
+  
+    <link rel="stylesheet" href="/blog/css/main.css">
+  
+
+
+<script defer>
+  document.addEventListener('visibilitychange', function () {
+  if (document.visibilityState == 'hidden') {
+      normal_title = document.title;
+      document.title = '点一下';
+  } else document.title = normal_title;
+});
+
+</script>
+  <body data-theme="light" class="notransition">
+    <script defer>
+      const body = document.body;
+      const data = body.getAttribute("data-theme");
+      const initTheme = (state) => {
+        if (state === "dark") {
+          body.setAttribute("data-theme", "dark");
+        } else if (state === "light") {
+          body.removeAttribute("data-theme");
+        } else {
+          localStorage.setItem("theme", data);
+        }
+      };
+   
+      initTheme(localStorage.getItem("theme"));
+      
+      setTimeout(() => body.classList.remove("notransition"), 75);
+    </script>
+  <div class="navbar" role="navigation">
+    <nav class="menu">
+      <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+      <label for="menu-trigger">
+        <span class="menu-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+            />
+          </svg>
+        </span>
+      </label>
+      <a id="mode">
+        <svg
+          class="mode-sunny"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 512 512"
+        >
+          <title>LIGHT</title>
+          <line
+            x1="256"
+            y1="48"
+            x2="256"
+            y2="96"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="256"
+            y1="416"
+            x2="256"
+            y2="464"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="403.08"
+            y1="108.92"
+            x2="369.14"
+            y2="142.86"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="142.86"
+            y1="369.14"
+            x2="108.92"
+            y2="403.08"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="464"
+            y1="256"
+            x2="416"
+            y2="256"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="96"
+            y1="256"
+            x2="48"
+            y2="256"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="403.08"
+            y1="403.08"
+            x2="369.14"
+            y2="369.14"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="142.86"
+            y1="142.86"
+            x2="108.92"
+            y2="108.92"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <circle
+            cx="256"
+            cy="256"
+            r="80"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+        </svg>
+        <svg
+          class="mode-moon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 512 512"
+        >
+          <title>DARK</title>
+          <line
+            x1="256"
+            y1="48"
+            x2="256"
+            y2="96"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="256"
+            y1="416"
+            x2="256"
+            y2="464"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="403.08"
+            y1="108.92"
+            x2="369.14"
+            y2="142.86"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="142.86"
+            y1="369.14"
+            x2="108.92"
+            y2="403.08"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="464"
+            y1="256"
+            x2="416"
+            y2="256"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="96"
+            y1="256"
+            x2="48"
+            y2="256"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="403.08"
+            y1="403.08"
+            x2="369.14"
+            y2="369.14"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <line
+            x1="142.86"
+            y1="142.86"
+            x2="108.92"
+            y2="108.92"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+          <circle
+            cx="256"
+            cy="256"
+            r="80"
+            style="stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px"
+          />
+        </svg>
+      </a>
+      <div class="trigger">
+        <div class="trigger-container">
+          
+            
+            
+            
+            
+            
+            
+            <a class="menu-link " href="/blog/"> 主页</a>
+          
+            
+            
+            
+            
+            
+            
+            <a class="menu-link " href="/blog/tags/"> 标签</a>
+          
+            
+            
+            
+            
+            
+            
+            <a class="menu-link " href="/blog/categories/"> 类别</a>
+          
+            
+            
+            
+            
+            
+            
+            <a class="menu-link " href="/blog/archives/"> 档案馆</a>
+          
+            
+            
+            
+            
+            
+            
+            <a class="menu-link " href="/blog/about/"> 关于</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+  <button id="toTopBtn"><i class="fa-solid fa-hand-point-up " ></i></button>
+<button id="toggleButton"><i class="fa-solid fa-chart-bar " ></i></button>
+<div id="overlay" class="overlay">
+  <div class="content">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%9F%E5%90%8D%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-text">一、域名的基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%84%E5%B1%82%E7%BA%A7%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">二、各层级的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A1%B6%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88Top-Level-Domain-TLD%EF%BC%89"><span class="toc-text">1. 顶级域名（Top-Level Domain, TLD）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88Second-Level-Domain-SLD%EF%BC%89"><span class="toc-text">2. 二级域名（Second-Level Domain, SLD）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%89%E7%BA%A7%E5%9F%9F%E5%90%8D%EF%BC%88Third-Level-Domain%EF%BC%89"><span class="toc-text">3. 三级域名（Third-Level Domain）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%9B%9B%E7%BA%A7%E3%80%81%E4%BA%94%E7%BA%A7%E2%80%A6%E2%80%A6%E5%9F%9F%E5%90%8D%EF%BC%9F"><span class="toc-text">4. 四级、五级……域名？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E2%80%9C%E4%B8%80%E7%BA%A7%E5%9F%9F%E5%90%8D%E2%80%9D%E5%88%B0%E5%BA%95%E6%8C%87%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9C%AF%E8%AF%AD%E6%BE%84%E6%B8%85"><span class="toc-text">三、“一级域名”到底指什么？术语澄清</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93%E5%9B%BE%E7%A4%BA"><span class="toc-text">四、总结图示</span></a></li></ol>
+    <button id="closeButton"><i class="fa-solid fa-circle-xmark"></i></button>
+  </div>
+</div>
+<div class="wrapper post">
+  <head>
+    <!-- 引入 Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+  <main class="page-content" aria-label="Content">
+      <header class="header">
+        
+          <div class="tags">
+            
+          </div>
+        
+        <h1 class="header-title" itemprop="headline">域名的基本结构科普</h1>
+          <div class="post-meta">
+            最后更新: <time>1月 01, 2026</time>
+            作者: <span itemprop="author">
+              <span itemprop="name">ZhijieBin</span>
+            </span>
+            字数: <span class="post-count">736</span>
+            预计阅读时间: <span class="post-count">2min</span> 
+          </div>       
+        </header>
+          <div class="page-content"><h2 id="一、域名的基本结构"><a href="#一、域名的基本结构" class="headerlink" title="一、域名的基本结构"></a>一、域名的基本结构</h2><p>域名采用<strong>从右到左逐级细分</strong>的层次结构，每一级用点（<code>.</code>）分隔。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www.blog.example.com</span><br></pre></td></tr></table></figure>
+
+<p>从右往左看，层级如下：</p>
+<ul>
+<li><code>.com</code> —— <strong>顶级域名（TLD）</strong></li>
+<li><code>example</code> —— <strong>二级域名</strong></li>
+<li><code>blog</code> —— <strong>三级域名（子域名）</strong></li>
+<li><code>www</code> —— <strong>四级域名（更细的子域名）</strong></li>
+</ul>
+<blockquote>
+<p>注意：在日常交流中，<strong>“一级域名”通常指的是“完整注册的主域名”</strong>，比如 <code>example.com</code>，而不是仅 <code>.com</code>。这容易造成术语混淆，所以更推荐使用“<strong>顶级域名、二级域名</strong>”等标准术语。</p>
+</blockquote>
+<hr>
+<h2 id="二、各层级的定义"><a href="#二、各层级的定义" class="headerlink" title="二、各层级的定义"></a>二、各层级的定义</h2><h3 id="1-顶级域名（Top-Level-Domain-TLD）"><a href="#1-顶级域名（Top-Level-Domain-TLD）" class="headerlink" title="1. 顶级域名（Top-Level Domain, TLD）"></a>1. <strong>顶级域名（Top-Level Domain, TLD）</strong></h3><ul>
+<li>位于最右边，是域名系统的最高层级。</li>
+<li>分为两类：<ul>
+<li><strong>通用顶级域（gTLD）</strong>：如 <code>.com</code>、<code>.net</code>、<code>.org</code>、<code>.xyz</code> 等；</li>
+<li><strong>国家代码顶级域（ccTLD）</strong>：如 <code>.cn</code>（中国）、<code>.uk</code>（英国）、<code>.jp</code>（日本）等。</li>
+</ul>
+</li>
+<li>由 <strong>ICANN</strong>（互联网名称与数字地址分配机构）统一管理。</li>
+</ul>
+<blockquote>
+<p>例如：在 <code>example.com</code> 中，<code>.com</code> 就是顶级域名 。</p>
+</blockquote>
+<hr>
+<h3 id="2-二级域名（Second-Level-Domain-SLD）"><a href="#2-二级域名（Second-Level-Domain-SLD）" class="headerlink" title="2. 二级域名（Second-Level Domain, SLD）"></a>2. <strong>二级域名（Second-Level Domain, SLD）</strong></h3><ul>
+<li>位于顶级域名左侧，是<strong>用户实际注册的部分</strong>。</li>
+<li>构成你网站的“主名称”，比如：<ul>
+<li><code>baidu.com</code> 中的 <code>baidu</code></li>
+<li><code>taobao.cn</code> 中的 <code>taobao</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通常所说的“一级域名”在实践中就是指“<strong>二级域名 + 顶级域名</strong>”的组合，例如 <code>baidu.com</code> 被称为一个“一级域名” 。</p>
+</blockquote>
+<hr>
+<h3 id="3-三级域名（Third-Level-Domain）"><a href="#3-三级域名（Third-Level-Domain）" class="headerlink" title="3. 三级域名（Third-Level Domain）"></a>3. <strong>三级域名（Third-Level Domain）</strong></h3><ul>
+<li>也叫<strong>子域名（Subdomain）</strong>，是用户在主域名下自行创建的。</li>
+<li>用于划分不同服务或功能模块，例如：<ul>
+<li><code>mail.google.com</code> → <code>mail</code> 是三级域名，表示邮箱服务；</li>
+<li><code>shop.taobao.com</code> → <code>shop</code> 是淘宝的店铺子域；</li>
+<li><code>www.example.com</code> → <code>www</code> 是最常见的三级域名（表示万维网）。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>子域名可以无限嵌套，因此存在四级、五级……域名 。</p>
+</blockquote>
+<hr>
+<h3 id="4-四级、五级……域名？"><a href="#4-四级、五级……域名？" class="headerlink" title="4. 四级、五级……域名？"></a>4. <strong>四级、五级……域名？</strong></h3><ul>
+<li><p>技术上，DNS 支持最多 <strong>127 级</strong>，但实际使用中极少超过 4~5 级。</p>
+</li>
+<li><p>例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dev.api.user.service.example.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>.com</code> → 顶级</li>
+<li><code>example</code> → 二级</li>
+<li><code>service</code> → 三级</li>
+<li><code>user</code> → 四级</li>
+<li><code>api</code> → 五级</li>
+<li><code>dev</code> → 六级</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>这种多级结构多用于大型企业或微服务架构中，用于隔离不同环境或模块 。</p>
+</blockquote>
+<hr>
+<h2 id="三、“一级域名”到底指什么？术语澄清"><a href="#三、“一级域名”到底指什么？术语澄清" class="headerlink" title="三、“一级域名”到底指什么？术语澄清"></a>三、“一级域名”到底指什么？术语澄清</h2><p>这里存在两种理解方式：</p>
+<table>
+<thead>
+<tr>
+<th>说法</th>
+<th>含义</th>
+<th>是否推荐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>严格 DNS 层级定义</strong></td>
+<td>一级域名 &#x3D; 顶级域名（如 <code>.com</code>）</td>
+<td>✅ 准确但少用</td>
+</tr>
+<tr>
+<td><strong>日常&#x2F;建站行业习惯</strong></td>
+<td>一级域名 &#x3D; 用户注册的完整域名（如 <code>example.com</code>）</td>
+<td>✅ 更常用</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>国内很多资料将 <code>example.com</code> 称为“一级域名”，而 <code>www.example.com</code> 为“二级域名” 。这种说法虽不完全符合 DNS 标准，但在实际使用中被广泛接受。</p>
+</blockquote>
+<hr>
+<h2 id="四、总结图示"><a href="#四、总结图示" class="headerlink" title="四、总结图示"></a>四、总结图示</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">dev.www.blog.example.com</span><br><span class="line">│    │    │     │      └── 顶级域名（TLD） → .com</span><br><span class="line">│    │    │     └───────── 二级域名（你注册的主体） → example</span><br><span class="line">│    │    └────────────── 三级域名（子域） → blog</span><br><span class="line">│    └─────────────────── 四级域名 → www</span><br><span class="line">└──────────────────────── 五级域名 → dev</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>你花钱注册的是“二级域名 + 顶级域名”</strong>（如 <code>yourname.com</code>）。</li>
+<li><strong>子域名（三级及以上）可免费自行创建</strong>，无需额外注册。</li>
+</ul>
+</div>          
+          <nav class="post-nav">
+    
+    
+    <a class="post-nav-item post-nav-next" href="/blog/2025/12/27/Scoop-%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84%E4%BF%AE%E6%94%B9%E6%96%B9%E6%B3%95/">
+      <div class="nav-arrow">OLDER&nbsp;&gt;</div>
+      <span class="post-title">Scoop 安装路径修改方法</span>
+    </a>
+    
+  </nav>
+
+   </main>
+</div>
+
+  <footer class="footer">
+    <small class="footer_copyright">
+      <div id="bottom-inner">
+        © Site by ZhijieBin<br>
+        <a target="_blank" rel="noopener" href="http://hexo.io">Hexo</a> &
+        <a target="_blank" rel="noopener" href="https://github.com/g0dmao/hexo-theme-Klise-enhanced">Klise-enhanced</a>
+        <br>
+        <a target="_blank" rel="noopener" href="https://chinese-font.netlify.app/zh-cn/fonts/jhlst/%E4%BA%AC%E8%8F%AF%E8%80%81%E5%AE%8B%E4%BD%93v2_002">京華老宋体</a> & <a target="_blank" rel="noopener" href="https://chinese-font.netlify.app/zh-cn/">中文网字支持计划</a>
+        <br>
+        始于2025.
+        
+      </div>
+    </small>
+  </footer>
+  
+  
+
+    
+      <script src="/blog/js/main.js"></script>
+    
+  
+  <script>
+    window.FPConfig = {
+      delay: 0,
+      ignoreKeywords: [],
+      maxRPS: 3,
+      hoverDelay: 50,
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('loaded');
+});
+
+  </script>
+</body>
+</html>
